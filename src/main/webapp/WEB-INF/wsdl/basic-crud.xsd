@@ -1,0 +1,94 @@
+<xsd:schema targetNamespace="http://basic.crud.user.sample"  xmlns:tns="http://basic.crud.user.sample" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:element name="statusCode" type="tns:statusCode"/>
+    <xsd:element name="sampleUser" type="tns:sampleUser"/>
+    <xsd:element name="status" type="tns:status"/>
+    <xsd:element name="createRequest" type="tns:createRequest"/>
+    <xsd:element name="createResponse" type="tns:createResponse"/>
+    <xsd:element name="readRequest" type="tns:readRequest"/>
+    <xsd:element name="readResponse" type="tns:readResponse"/>
+    <xsd:element name="updateRequest" type="tns:updateRequest"/>
+    <xsd:element name="updateResponse" type="tns:updateResponse"/>
+    <xsd:element name="deleteRequest" type="tns:deleteRequest"/>
+    <xsd:element name="deleteResponse" type="tns:deleteResponse"/>
+
+    <xsd:simpleType name = "statusCode">
+        <xsd:restriction base = "xsd:string">
+            <xsd:enumeration value = "OK"/>
+            <xsd:enumeration value = "WARNING"/>
+            <xsd:enumeration value = "ERROR"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="sampleUser">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="id" type="xsd:string" />
+            <xsd:element maxOccurs="1" minOccurs="1" name="firstName" type="xsd:string" />
+            <xsd:element maxOccurs="1" minOccurs="1" name="lastName" type="xsd:string" />
+            <xsd:element maxOccurs="1" minOccurs="0" name="employeeNumber" type="xsd:string" />
+            <xsd:element maxOccurs="1" minOccurs="0" name="active" type="xsd:boolean" />
+            <xsd:element maxOccurs="1" minOccurs="0" name="location" type="xsd:string" />
+            <xsd:element maxOccurs="1" minOccurs="0" name="email" type="xsd:string" />
+            <xsd:element maxOccurs="1" minOccurs="0" name="phone" type="xsd:string" />
+            <xsd:element maxOccurs="1" minOccurs="0" name="mobilePhone" type="xsd:string" />
+            <xsd:element maxOccurs="1" minOccurs="0" name="department" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="status">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="status" type="tns:statusCode" />
+            <xsd:element maxOccurs="1" minOccurs="0" name="message" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="createRequest">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="user" type="tns:sampleUser" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="createResponse">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="status" type="tns:status" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="updateRequest">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="user" type="tns:sampleUser" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="updateResponse">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="status" type="tns:status" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="readRequest">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="id" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="readResponse">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="status" type="tns:status" />
+            <xsd:element maxOccurs="1" minOccurs="0" name="user" type="tns:sampleUser" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="deleteRequest">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="id" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="deleteResponse">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="status" type="tns:status" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

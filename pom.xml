@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.hamzaouni</groupId>
+  <artifactId>basic-crud</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>basic-crud Maven Webapp</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.version>3.1</maven.compiler.version>
+    <jaxws.version>2.2.5</jaxws.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml.ws</groupId>
+      <artifactId>jaxws-rt</artifactId>
+      <version>${jaxws.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>basic-crud</finalName>
+
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven.compiler.version}</version>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+            <generatedSourcesDirectory>${project.build.directory}/generated-sources/jaxws-wsimport</generatedSourcesDirectory>
+            <!--<encoding>${project.build.sourceEncoding}</encoding>-->
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.jvnet.jax-ws-commons</groupId>
+          <artifactId>jaxws-maven-plugin</artifactId>
+          <version>2.2</version>
+          <executions>
+            <execution>
+              <id>wsimport-from-jdk</id>
+              <goals>
+                <goal>wsimport</goal>
+              </goals>
+              <configuration>
+
+                <keep>true</keep>
+                <wsdlDirectory>${basedir}/src/main/webapp/WEB-INF/wsdl</wsdlDirectory>
+                <sourceDestDir>${basedir}/src/main/java/</sourceDestDir>
+                <wsdlFiles>
+                  <wsdlFile>basic-crud.wsdl</wsdlFile>
+                </wsdlFiles>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+      </plugins>
+
+  </build>
+</project>
