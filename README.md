@@ -1,5 +1,5 @@
 # basic-crud-soap-jaxws
-Basic crud example implementation
+Implementation of Basic crud example 
 
 You just need an IDE, java 8 ,maven.
 
