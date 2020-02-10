@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @WebService(endpointInterface = "sample.user.crud.basic.CrudPort"
         , name = "CrudService"
         , serviceName = "CrudService"
-        , targetNamespace = "http://jetherrodrigues.com/jaxws/calculator"
+        , targetNamespace = "http://basic.crud.user.sample"
 )
 public class DefaultCrudService implements CrudPort {
 
@@ -42,12 +42,20 @@ public class DefaultCrudService implements CrudPort {
                             new UserNotFoundException("Unable to find user with id: " +  idUser + "" ).getMessage(),
                             new QName("http://schemas.xmlsoap.org/soap/envelope/", SERVICE)));
         }
+        SampleUser user = result.get(0);
+        ReadResponse readResponse = new ReadResponse();
+        readResponse.setUser(user);
 
+        Status status = new Status();
+        status.setMessage("Success");
+        status.setStatus(StatusCode.OK);
         return null;
     }
 
     @Override
     public CreateResponse create(CreateRequest request) {
+        SampleUser user = request.getUser();
+
         return null;
     }
 
