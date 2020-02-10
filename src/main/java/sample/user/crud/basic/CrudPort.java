@@ -46,7 +46,7 @@ public interface CrudPort {
     @WebResult(name = "response", partName = "response")
     public CreateResponse create(
         @WebParam(name = "request", partName = "request")
-        CreateRequest request);
+        CreateRequest request) throws SOAPException;
 
     /**
      * 
