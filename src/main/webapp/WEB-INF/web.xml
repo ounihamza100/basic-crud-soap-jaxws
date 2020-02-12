@@ -9,13 +9,13 @@
       <listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
     </listener>
     <servlet>
-      <servlet-name>CrudService</servlet-name>
+      <servlet-name>DefaultCrudService</servlet-name>
       <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
       <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-      <servlet-name>CrudService</servlet-name>
-      <url-pattern>/Crud/*</url-pattern>
+      <servlet-name>DefaultCrudService</servlet-name>
+      <url-pattern>/Crud</url-pattern>
     </servlet-mapping>
     <mime-mapping>
       <extension>txt</extension>

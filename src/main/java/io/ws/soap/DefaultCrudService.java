@@ -17,16 +17,15 @@ import java.util.stream.Collectors;
  * @author Hamza Ouni
  */
 @WebService(endpointInterface = "sample.user.crud.basic.CrudPort"
-        , name = "CrudService"
-        , serviceName = "CrudService"
+        , name = "DefaultCrudService"
+        , serviceName = "DefaultCrudService"
         , targetNamespace = "http://basic.crud.user.sample"
 )
 public class DefaultCrudService implements CrudPort {
 
     private final static String SERVICE = "CrudService";
 
-   private List<SampleUser> users;
-
+    private List<SampleUser> users;
 
 
     public DefaultCrudService() {
@@ -37,13 +36,13 @@ public class DefaultCrudService implements CrudPort {
     public ReadResponse read(ReadRequest request) throws SOAPException {
         String idUser = request.getId();
         List<SampleUser> result = users.stream().filter(user -> user.getId().equals(idUser)).collect(Collectors.toList());
-        if(result.isEmpty()) {
+        if (result.isEmpty()) {
             throw new BasicCrudSOAPFaultException(
                     BasicCrudSOAPFaultException
-                    .getSoapFactory()
-                    .createFault(
-                            new UserNotFoundException("Unable to find user with id: " +  idUser + "" ).getMessage(),
-                            new QName("http://schemas.xmlsoap.org/soap/envelope/", SERVICE)));
+                            .getSoapFactory()
+                            .createFault(
+                                    new UserNotFoundException("Unable to find user with id: " + idUser + "").getMessage(),
+                                    new QName("http://schemas.xmlsoap.org/soap/envelope/", SERVICE)));
         }
         SampleUser user = result.get(0);
         ReadResponse readResponse = new ReadResponse();
@@ -58,7 +57,7 @@ public class DefaultCrudService implements CrudPort {
     @Override
     public CreateResponse create(CreateRequest request) throws SOAPException {
         SampleUser user = request.getUser();
-        if( user.getId() == null || user.getFirstName() == null || user.getLastName() == null ) {
+        if (user.getId() == null || user.getFirstName() == null || user.getLastName() == null) {
             throw new BasicCrudSOAPFaultException(
                     BasicCrudSOAPFaultException
                             .getSoapFactory()
@@ -71,7 +70,10 @@ public class DefaultCrudService implements CrudPort {
         Optional<SampleUser> result = users
                 .stream()
                 .filter(item -> item.getId().equals(user.getId())).findFirst();
-        result.orElseThrow(UserAlreadyExistException::new);
+        if (result.isPresent()) {
+            throw new UserAlreadyExistException();
+        }
+
 
         users.add(user);
         CreateResponse response = new CreateResponse();
@@ -84,8 +86,20 @@ public class DefaultCrudService implements CrudPort {
 
     @Override
     public UpdateResponse update(UpdateRequest request) {
-
-        return null;
+        SampleUser source = request.getUser();
+        String idUser = source.getId();
+        List<SampleUser> result = users.stream().filter(x -> x.getId().equals(idUser)).collect(Collectors.toList());
+        UpdateResponse response = new UpdateResponse();
+        Status status = new Status();
+        if (result.isEmpty()) {
+            status.setMessage("Error : user not found!");
+            status.setStatus(StatusCode.ERROR);
+            response.setStatus(status);
+            return response;
+        }
+        SampleUser target = new SampleUser();
+        response = updateUser(source, target, response);
+        return response;
     }
 
     @Override
@@ -94,7 +108,7 @@ public class DefaultCrudService implements CrudPort {
         String idUser = request.getId();
         List<SampleUser> result = users.stream().filter(user -> user.getId().equals(idUser)).collect(Collectors.toList());
         Status status = new Status();
-        if(result.isEmpty()) {
+        if (result.isEmpty()) {
             status.setMessage("Error : can't delete user, verify user id is correct!");
             status.setStatus(StatusCode.ERROR);
             response.setStatus(status);
@@ -113,5 +127,31 @@ public class DefaultCrudService implements CrudPort {
 
     public void setUsers(List<SampleUser> users) {
         this.users = users;
+    }
+
+    private UpdateResponse updateUser(SampleUser source, SampleUser target, UpdateResponse response) {
+
+        Status status = new Status();
+        if (source.getFirstName() == null || source.getLastName() == null) {
+            status.setMessage("Error : missing properties!");
+            status.setStatus(StatusCode.ERROR);
+            response.setStatus(status);
+            return response;
+        }
+        target.setActive(source.isActive());
+        target.setDepartment(source.getDepartment());
+        target.setEmail(source.getEmail());
+        target.setEmployeeNumber(source.getEmployeeNumber());
+        target.setFirstName(source.getFirstName());
+        target.setId(source.getId());
+        target.setLastName(source.getLastName());
+        target.setPhone(source.getPhone());
+        target.setLocation(source.getLocation());
+        target.setMobilePhone(source.getMobilePhone());
+        status.setMessage("Success");
+        status.setStatus(StatusCode.OK);
+        response.setStatus(status);
+        return response;
+
     }
 }

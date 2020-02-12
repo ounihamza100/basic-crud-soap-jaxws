@@ -1,0 +1,116 @@
+
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"  
+xmlns:tns="http://basic.crud.user.sample" 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"  
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+name="wsCRUDUserService"
+targetNamespace="http://basic.crud.user.sample"> 
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://basic.crud.user.sample" schemaLocation="basic-crud.xsd" />
+        </schema>
+
+    </wsdl:types>
+ 
+    <wsdl:message name="createRequest">
+        <wsdl:part name="request" type="tns:createRequest" />
+    </wsdl:message>
+ 
+    <wsdl:message name="createResponse">
+        <wsdl:part name="response" type="tns:createResponse" />
+    </wsdl:message>
+ 
+    <wsdl:message name="updateRequest">
+        <wsdl:part name="request" type="tns:updateRequest" />
+    </wsdl:message>
+ 
+    <wsdl:message name="updateResponse">
+        <wsdl:part name="response" type="tns:updateResponse" />
+    </wsdl:message>
+ 
+    <wsdl:message name="readRequest">
+        <wsdl:part name="request" type="tns:readRequest" />
+    </wsdl:message>
+ 
+    <wsdl:message name="readResponse">
+        <wsdl:part name="response" type="tns:readResponse" />
+    </wsdl:message>
+ 
+    <wsdl:message name="deleteRequest">
+        <wsdl:part name="request" type="tns:deleteRequest" />
+    </wsdl:message>
+ 
+    <wsdl:message name="deleteResponse">
+        <wsdl:part name="response" type="tns:deleteResponse" />
+    </wsdl:message>
+ 
+    <wsdl:portType name="crudPort">
+        <wsdl:operation name="create">
+            <wsdl:input message="tns:createRequest"/>
+            <wsdl:output message="tns:createResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="update">
+            <wsdl:input message="tns:updateRequest"/>
+            <wsdl:output message="tns:updateResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="read">
+            <wsdl:input message="tns:readRequest"/>
+            <wsdl:output message="tns:readResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="delete">
+            <wsdl:input message="tns:deleteRequest"/>
+            <wsdl:output message="tns:deleteResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+ 
+    <wsdl:binding name="wsCRUDUserServicePortTypeBindingCrud" type="tns:crudPort">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="read">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body namespace="http://basic.crud.user.sample" use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="http://basic.crud.user.sample" use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="create">
+            <soap:operation soapAction="http://basic.crud.user.sample"/>
+            <wsdl:input>
+                <soap:body namespace="http://basic.crud.user.sample" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="http://basic.crud.user.sample" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="update">
+            <soap:operation soapAction="http://basic.crud.user.sample"/>
+            <wsdl:input>
+                <soap:body namespace="http://basic.crud.user.sample" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="http://basic.crud.user.sample" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="delete">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body namespace="http://basic.crud.user.sample" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="http://basic.crud.user.sample" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+ 
+ 
+
+ 
+    <wsdl:service name="CrudService">
+        <wsdl:port binding="tns:wsCRUDUserServicePortTypeBindingCrud" name="wsCRUDUserServicePortTypeBindingCrud">
+            <soap:address location="http://localhost:9092/WsCRUDUserService/wsCRUDUserServicePortTypeBindingCrud"/>
+        </wsdl:port>
+
+    </wsdl:service>
+      
+</wsdl:definitions>

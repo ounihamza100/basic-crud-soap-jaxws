@@ -108,7 +108,7 @@ targetNamespace="http://basic.crud.user.sample">
  
     <wsdl:service name="CrudService">
         <wsdl:port binding="tns:wsCRUDUserServicePortTypeBindingCrud" name="wsCRUDUserServicePortTypeBindingCrud">
-            <soap:address location="http://localhost:8080/WsCRUDUserService/wsCRUDUserServicePortTypeBindingCrud"/>
+            <soap:address location="http://localhost:9092/WsCRUDUserService/wsCRUDUserServicePortTypeBindingCrud"/>
         </wsdl:port>
 
     </wsdl:service>

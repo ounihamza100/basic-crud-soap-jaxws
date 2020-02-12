@@ -1,5 +1,6 @@
 D:\SAGAN\basiccrud\src\main\java\io\ws\soap\exceptions\BasicCrudRuntimeException.java
 D:\SAGAN\basiccrud\src\main\java\sample\user\crud\basic\SampleUser.java
+D:\SAGAN\basiccrud\src\main\java\io\ws\soap\exceptions\UserInvalidPropertiesException.java
 D:\SAGAN\basiccrud\src\main\java\io\ws\soap\exceptions\UserNotFoundException.java
 D:\SAGAN\basiccrud\src\main\java\sample\user\crud\basic\CreateRequest.java
 D:\SAGAN\basiccrud\src\main\java\sample\user\crud\basic\CrudPort.java
@@ -12,6 +13,7 @@ D:\SAGAN\basiccrud\src\main\java\sample\user\crud\basic\UpdateResponse.java
 D:\SAGAN\basiccrud\src\main\java\sample\user\crud\basic\ObjectFactory.java
 D:\SAGAN\basiccrud\src\main\java\sample\user\crud\basic\CrudService.java
 D:\SAGAN\basiccrud\src\main\java\sample\user\crud\basic\ReadResponse.java
+D:\SAGAN\basiccrud\src\main\java\io\ws\soap\exceptions\UserAlreadyExistException.java
 D:\SAGAN\basiccrud\src\main\java\io\ws\soap\exceptions\BasicCrudSOAPFaultException.java
 D:\SAGAN\basiccrud\src\main\java\io\ws\soap\Util.java
 D:\SAGAN\basiccrud\src\main\java\sample\user\crud\basic\StatusCode.java

@@ -50,28 +50,28 @@
             <!--<encoding>${project.build.sourceEncoding}</encoding>-->
           </configuration>
         </plugin>
-        <plugin>
-          <groupId>org.jvnet.jax-ws-commons</groupId>
-          <artifactId>jaxws-maven-plugin</artifactId>
-          <version>2.2</version>
-          <executions>
-            <execution>
-              <id>wsimport-from-jdk</id>
-              <goals>
-                <goal>wsimport</goal>
-              </goals>
-              <configuration>
+        <!--<plugin>-->
+          <!--<groupId>org.jvnet.jax-ws-commons</groupId>-->
+          <!--<artifactId>jaxws-maven-plugin</artifactId>-->
+          <!--<version>2.2</version>-->
+          <!--<executions>-->
+            <!--<execution>-->
+              <!--<id>wsimport-from-jdk</id>-->
+              <!--<goals>-->
+                <!--<goal>wsimport</goal>-->
+              <!--</goals>-->
+              <!--<configuration>-->
 
-                <keep>true</keep>
-                <wsdlDirectory>${basedir}/src/main/webapp/WEB-INF/wsdl</wsdlDirectory>
-                <sourceDestDir>${basedir}/src/main/java/</sourceDestDir>
-                <wsdlFiles>
-                  <wsdlFile>basic-crud.wsdl</wsdlFile>
-                </wsdlFiles>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
+                <!--<keep>true</keep>-->
+                <!--<wsdlDirectory>${basedir}/src/main/webapp/WEB-INF/wsdl</wsdlDirectory>-->
+                <!--<sourceDestDir>${basedir}/src/main/java/</sourceDestDir>-->
+                <!--<wsdlFiles>-->
+                  <!--<wsdlFile>basic-crud.wsdl</wsdlFile>-->
+                <!--</wsdlFiles>-->
+              <!--</configuration>-->
+            <!--</execution>-->
+          <!--</executions>-->
+        <!--</plugin>-->
 
       </plugins>
 
